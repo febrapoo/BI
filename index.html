@@ -5,75 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proteção com Senha</title>
     <style>
-        /* Estilizando o body */
+        /* Estilos CSS */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #0099FF, #00CCFF);
             font-family: Arial, sans-serif;
             color: white;
         }
-
-        /* Estilizando o container */
         .container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo mais claro e transparente */
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
             text-align: center;
             max-width: 400px;
             width: 100%;
         }
-
-        /* Estilizando o título */
         h1 {
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-
-        /* Estilizando o input da senha */
         input[type="password"] {
             padding: 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px; /* Bordas mais arredondadas */
             width: 100%;
             margin-bottom: 20px;
             font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.3); /* Fundo mais claro e transparente para o input */
+            color: white; /* Cor do texto do input */
         }
-
-        /* Estilizando o botão */
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.6); /* Cor do placeholder */
+        }
         button {
-            background-color: #2575fc;
+            background-color: #005EB8; /* Azul mais escuro */
             color: white;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
-
-        /* Estilizando o hover do botão */
         button:hover {
-            background-color: #6a11cb;
+            background-color: #0073e6; /* Azul mais claro no hover */
+            transform: scale(1.05); /* Aumenta um pouco no hover */
         }
-
-        /* Estilizando a mensagem de erro */
         .error {
             color: #ff4b5c;
             margin-top: 10px;
             display: none;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-
-        /* Estilizando a imagem */
         .logo {
             max-width: 150px;
             margin-bottom: 20px;
+            opacity: 0.9; /* Logo um pouco transparente */
         }
     </style>
+    <!-- Incluindo a biblioteca CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -87,13 +85,18 @@
     <script>
         function RABADA() {
             const passwordInput = document.getElementById('password').value;
-            const correctPassword = "Pbi@Febrapo2024"; // Defina aqui a senha correta
+            const hashedPasswordInput = CryptoJS.SHA256(passwordInput).toString();
+            
+            console.log("Hash da senha digitada:", hashedPasswordInput); // Mostra o hash gerado
+            console.log("Hash esperado:", "2298bfee8dbd644e2d6afdd49e9a00ee04973afc3cca9707f5a9492dd31259a4"); // Mostra o hash esperado
+            
+            const correctPasswordHash = "2298bfee8dbd644e2d6afdd49e9a00ee04973afc3cca9707f5a9492dd31259a4";
             const errorMsg = document.getElementById('error-msg');
 
-            if (passwordInput === correctPassword) {
-                window.location.href = "https://app.powerbi.com/view?r=eyJrIjoiNDhlMTM5OWEtMTFmYS00NTNhLWJjYzAtMmQ5MTAwMTVkOWJkIiwidCI6IjMyNTM2Y2E0LTFjNjctNDgzYS04NTUwLTQ1NTk1NzgzOGQxMSJ9"; // Link para onde redirecionar
+            if (hashedPasswordInput === correctPasswordHash) {
+                window.location.href = "https://app.powerbi.com/view?r=eyJrIjoiNTk1MWU3NmUtZTkyNi00ZGY0LTgyYmEtMWFmZjgzNDZmYjdjIiwidCI6IjMyNTM2Y2E0LTFjNjctNDgzYS04NTUwLTQ1NTk1NzgzOGQxMSJ9";
             } else {
-                errorMsg.style.display = "block";
+                errorMsg.style.display = "block"; // Mostra a mensagem de erro apenas se a senha estiver incorreta
             }
         }
     </script>
