@@ -88,13 +88,13 @@
             const hashedPasswordInput = CryptoJS.SHA256(passwordInput).toString();
             
             console.log("Hash da senha digitada:", hashedPasswordInput); // Mostra o hash gerado
-            console.log("Hash esperado:", "2298bfee8dbd644e2d6afdd49e9a00ee04973afc3cca9707f5a9492dd31259a4"); // Mostra o hash esperado
+            console.log("Hash esperado:", "a997359e158f7804b1d9d31ecc61583415e0b159765f6aed16bb9565d846973e"); // Mostra o hash esperado
             
-            const correctPasswordHash = "2298bfee8dbd644e2d6afdd49e9a00ee04973afc3cca9707f5a9492dd31259a4";
+            const correctPasswordHash = "a997359e158f7804b1d9d31ecc61583415e0b159765f6aed16bb9565d846973e";
             const errorMsg = document.getElementById('error-msg');
 
             if (hashedPasswordInput === correctPasswordHash) {
-                window.location.href = "https://app.powerbi.com/view?r=eyJrIjoiNTk1MWU3NmUtZTkyNi00ZGY0LTgyYmEtMWFmZjgzNDZmYjdjIiwidCI6IjMyNTM2Y2E0LTFjNjctNDgzYS04NTUwLTQ1NTk1NzgzOGQxMSJ9";
+                window.location.href = "https://app.powerbi.com/view?r=eyJrIjoiNWNiYWU5NmYtYmUyNy00ZDA4LThhODEtMTY5ODc5MGQwZTIzIiwidCI6IjMyNTM2Y2E0LTFjNjctNDgzYS04NTUwLTQ1NTk1NzgzOGQxMSJ9";
             } else {
                 errorMsg.style.display = "block"; // Mostra a mensagem de erro apenas se a senha estiver incorreta
             }
